@@ -1,0 +1,41 @@
+Project 4 - How do I get to Timbuktu?
+Due Friday, 4/19/13, 3PM, E-Learning
+
+Google Maps is great for finding driving directions through most parts of the world, but if you wanted to estimate how much time it would take and how much it would cost to go by bus, train, and hot-air balloon from Istanbul to Ulaanbaatar, it wouldn't be of much help. 
+
+For this project, you will be creating a graph of public transport routes around the world and writing code to find the time and cost of traveling from any country capital to any other, anywhere on earth. 
+
+To accomplish this, you will read in a set of nodes and edges from a CSV file. Each node will be in the following format: 
+
+Country Name, City Name, Latitude, Longitude
+Each edge will be in the following format: 
+Origin City, Destination City, Type of Transport (Bus, Train, Boat, Plane), Average time required, Average cost in USD, "Notes (these may include the CSV delimiter)"
+These nodes and edges will be specified by you. Each person in the class will select up to three countries (up to .5pts extra credit for each country - only 199 countries (these are still available), so this is slightly cutthroat), do some Googling, and find routes to the capitals of all adjacent countries (preferably bus and train for each if available - seat61.com is a good resource for train schedules). For island nations, google to find out if there are international ferries - but countries on continents should not be considered adjacent to countries on other continents across oceans. Additionally, you will find the average times and costs for flights to Washington D.C., Lima (Peru), London (United Kingdom), Johannesburg (South Africa), Sydney (Australia) and Singapore - to do this, just go on Momondo.com and take the first result in the (fully loaded) list - or it might be even faster to use you can use Kayak Explore. These lists will be combined to form the complete list for the world. You will enter the route information here: Complete the Form Here
+
+Your code will need to read in the CSV file, take input from the user using a command-line menu (start and destination, criteria, output file), and print out the total time/cost and a series of steps to get from the origin to the destination. Your program will generate an HTML file with a Google Map that will show the route and include tooltips with details on time/cost/notes for each leg of the route. 
+
+Your program should be able to find the cheapest or fastest overland route for any pair of cities. You should only look at flights when there is no way to get there by other means. Make sure you read the previous sentence - use the minimum number of flights possible (even if a land-based route is slower or more expensive). An easy way to do this is to apply a multiplier to the cost of each flight so it is naturally bubbled down in the heap by the algorithm. 
+
+Since e (the number of edges) is way, way less than n2, use adjacency lists and a min heap to choose the next vertex. Do not use an adjacency matrix. Most of the theory you need for this project is in this lecture: Dijkstra’s Algorithm
+
+Data files - these will change: cities.csv, routes.csv (these are generated from current state of database). Current Route Map 
+
+
+Quick Fixes for Common Problems
+If you are using Visual Studio and you get an "Invalid Heap Assertion", add the following to the top of your main method: _CrtSetReportMode( _CRT_ASSERT, 0); - note that this is the quick-and-dirty workaround and not really a legitimate 'fix' - you could also use STL's set class (which maintains a binary search tree) and, for every update, just delete the existing node and insert the new one (in log n time), but that's not required.
+
+If your code won't compile because it says the Node/City type or Edge/Route type does not exist, add "class Node;" to the top of your Edge class and "class Edge;" to the top of your Node class. This predefines both classes and solves the circular dependency issue.
+
+Some city names have an apostrophe in them. Make sure to use double quotes rather than single quotes for your title outputs. You may have to escape the character like this: " \" "
+
+
+Sample Runs
+These runs are based on the following files - the files above are different from these: routes.csv (3/30) cities.csv (3/30) (command-line only, no menu required, Makefile is required) 
+Output formatting guide (the actual data in this file may not be correct). 
+./Project4 cities.csv routes.csv sampleOutputItalyKazakhstanCheapest.html Italy Kazakhstan cheapest 
+./Project4 cities.csv routes.csv sampleOutputItalyKazakhstanFastest.html Italy Kazakhstan fastest 
+./Project4 cities.csv routes.csv sampleOutputParaguayGuatemalaCheapest.html Paraguay Guatemala cheapest 
+./Project4 cities.csv routes.csv sampleOutputPortugalIcelandCheapest.html Portugal Iceland cheapest 
+./Project4 cities_big.csv routes_big.csv bigOutput.html fforcgxrop mhxzwmvbpd cheapest 
+An efficient solution would finish the last sample run in under 10 seconds. If yours doesn't, it will be subjected to a higher degree of scrutiny 
+ 
