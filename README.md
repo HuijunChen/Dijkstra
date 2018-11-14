@@ -1,0 +1,2 @@
+# Dijkstra
+This program creates a graph of public transport routes around the world, finds the cheapest or fastest overland route for any pair of cities using the Dijkstra algorithm, and finally generates an HTML file with a Google Map that will show the route and include tooltips with details on time/cost/notes for each leg of the route. More detailed description of this work can be found in “Graph Assignment.txt”.
